@@ -1,35 +1,31 @@
-#Seafile server
+# Seafile server
 
-Install seafile fileserver.
+An Ansible playbook that installs a Seafile fileserver for Ubuntu.
 
-##Role Variables
+## Usage
 
+    ansible-playbook main.yml
 
-@see defaults/main.yml
+## Role Variables
 
-##Init database
+See [roles/seafile/defaults/main.yml](https://github.com/Andy-ch/ansible-seafile/blob/master/roles/seafile/defaults/main.yml)
+
+## Init database
 
 When is `seafile_create_database` set to True, database is initialized after it's created.
 To initialize manualy use extra vars:
  
-     ansible-playbook ../../path/to/playbook.yml --extra-vars '{"seafile_init_database": True}'
+   ansible-playbook main.yml --extra-vars '{"seafile_init_database": true}'
 
-##Misc
+## Misc
+
 Sometimes you need to restart memcached, when assets not loading properly.
 
-     service memcached restart
+   service memcached restart
 
-##Dependencies
+## Dependencies
 
 None
-
-Example Playbook
-----------------
-
-    - hosts: seafile
-      become: True
-      roles:
-         - netzwirt.seafile
 
 # License
 
@@ -37,4 +33,4 @@ BSD
 
 # Author Information
 
-[netzwirt](https://github.com/netzwirt)).
+Originally created by [netzwirt](https://github.com/netzwirt).
