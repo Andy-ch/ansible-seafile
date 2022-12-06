@@ -29,6 +29,7 @@
   - openssl
   - mysql-client
   - python-pip
+  - python2.7-dev
 
 - name: Install required Python packages
   pip:
