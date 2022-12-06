@@ -9,6 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install Ansible
-        run: apt update && apt install -y ansible
+        run: sudo apt update && sudo apt install -y ansible
       - name: Run the playbook
         run: ansible-playbook main.yml
