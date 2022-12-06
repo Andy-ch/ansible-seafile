@@ -28,10 +28,12 @@
   - curl 
   - openssl
   - mysql-client
+  - python-pip
 
 - name: Install required Python packages
   pip:
     name: "{{ item }}"
+    executable: pip2
   loop:
     - simplejson
     - MySQL-python
