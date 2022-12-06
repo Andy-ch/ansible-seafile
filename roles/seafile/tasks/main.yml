@@ -23,16 +23,20 @@
   with_items:
   - wget
   - python-setuptools 
-  - python-simplejson 
-  - python-imaging 
-  - python-mysqldb
   - memcached 
-  - python-memcache 
   - pwgen 
   - curl 
   - openssl
   - mysql-client
 
+- name: Install required Python packages
+  pip:
+    name: "{{ item }}"
+  loop:
+    - simplejson
+    - MySQL-python
+    - python-memcached
+    - pillow
 
 - name: prepare folders
   file:
