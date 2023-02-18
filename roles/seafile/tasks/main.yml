@@ -23,16 +23,28 @@
   with_items:
   - wget
   - python-setuptools 
-  - python-simplejson 
-  - python-imaging 
-  - python-mysqldb
   - memcached 
-  - python-memcache 
   - pwgen 
   - curl 
   - openssl
   - mysql-client
+  - python-pip
+  - python2.7-dev
 
+- name: Download MySQL header file
+  get_url:
+    url: https://raw.githubusercontent.com/paulfitz/mysql-connector-c/master/include/my_config.h
+    dest: /usr/include/mysql/my_config.h
+
+- name: Install required Python packages
+  pip:
+    name: "{{ item }}"
+    executable: pip2
+  loop:
+    - simplejson
+    - MySQL-python
+    - python-memcached
+    - pillow
 
 - name: prepare folders
   file:

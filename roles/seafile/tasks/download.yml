@@ -4,22 +4,27 @@
     path: "{{ seafile_installation_path }}"
   register: _seafile_installed
 
+- name: Download Apt signing key
+  get_url:
+    url: https://linux-clients.seafile.com/seafile.asc
+    dest: /usr/share/keyrings/seafile-keyring.asc
 
-- name: download seafile
-  get_url: 
-    url: https://bintray.com/artifact/download/seafile-org/seafile/seafile-server_{{ seafile_version }}_x86-64.tar.gz
-    dest: /tmp/
-  register: _seafile_download
-  when: _seafile_installed.stat.exists == False
+- name: Add Seafile repo to Apt source list
+  copy:
+    content: 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/jammy/ stable main'
+    dest: /etc/apt/sources.list.d/seafile.list
 
+- name: Install Seafile
+  apt:
+    name: seafile-gui
+    update_cache: yes
 
-- name: unarchive downloaded file
-  unarchive: 
-    src: "{{ _seafile_download.dest }}"
-    dest: "{{ seafile_home_path }}"
-    copy: no
-  when: _seafile_installed.stat.exists == False
+- name: Find Seafile installation
+  command: ls -al /usr/bin/seafile-applet
+  register: find
 
+- debug:
+    var: find
 
 - name: link seafile to current
   file:

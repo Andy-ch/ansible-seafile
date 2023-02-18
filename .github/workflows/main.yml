@@ -2,13 +2,13 @@ name: Main
 on:
   pull_request:
     branches:
-      - main
+      - master
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Install Ansible
-        run: apt update && apt install -y ansible
+        run: sudo apt update && sudo apt install -y ansible
       - name: Run the playbook
-        run: ansible-playbook main.yml
+        run: ansible-playbook -i localhost, -c local main.yml
