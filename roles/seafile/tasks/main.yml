@@ -30,7 +30,7 @@
   - mysql-client
   - python-pip
   - python2.7-dev
-  - mysql-devel
+  - mysql-dev
 
 - name: Install required Python packages
   pip:
