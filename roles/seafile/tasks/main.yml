@@ -30,7 +30,11 @@
   - mysql-client
   - python-pip
   - python2.7-dev
-  - mysql-dev
+
+- name: Download MySQL header file
+  get_url:
+    url: https://raw.githubusercontent.com/paulfitz/mysql-connector-c/master/include/my_config.h
+    dest: /usr/include/mysql/my_config.h
 
 - name: Install required Python packages
   pip:
