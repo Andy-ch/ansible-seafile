@@ -20,7 +20,7 @@
     update_cache: yes
 
 - name: Find Seafile installation
-  command: find / -name '*seafile*'
+  command: find / -name seaf-server
   register: find
 
 - debug:
