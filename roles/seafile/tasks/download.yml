@@ -10,10 +10,9 @@
     dest: /usr/share/keyrings/seafile-keyring.asc
 
 - name: Add Seafile repo to Apt source list
-  lineinfile:
-    path: /etc/apt/sources.list.d/seafile.list
-    regexp: '^deb'
-    line: 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/jammy/ stable main'
+  copy:
+    content: 'deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/jammy/ stable main'
+    dest: /etc/apt/sources.list.d/seafile.list
 
 - name: Install Seafile
   apt:
