@@ -19,6 +19,13 @@
     name: seafile-gui
     update_cache: yes
 
+- name: Find Seafile installation
+  command: find / -name seafile.sh
+  register: find
+
+- debug:
+    var: find
+
 - name: link seafile to current
   file:
     src: "{{ seafile_installation_path }}"
