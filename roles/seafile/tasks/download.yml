@@ -20,7 +20,7 @@
     update_cache: yes
 
 - name: Find Seafile installation
-  command: find / -name seaf-server
+  command: ls -al /usr/bin/seafile-applet
   register: find
 
 - debug:
